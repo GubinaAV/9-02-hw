@@ -1,9 +1,9 @@
-# Домашнее задание к занятию "`Git`" - `Gubina Angela Vital'evna`
+# Домашнее задание к занятию "`GitLab`" - `Gubina Angela Vital'evna`
 
 
 ### Инструкция по выполнению домашнего задания
 
-   1. Сделайте `fork` данного репозитория к себе в Github и переименуйте его по названию или номеру занятия, например, https://github.com/имя-вашего-репозитория/git-hw или  https://github.com/имя-вашего-репозитория/7-1-ansible-hw).
+   1. Сделайте `fork` данного репозитория к себе в Github и переименуйте его по названию или номеру занятия, например, https://github.com/имя-вашего-репозитория/git-hw или  https://github.com/имя-вашего-репозитория/8-03-gitlab-hw).
    2. Выполните клонирование данного репозитория к себе на ПК с помощью команды `git clone`.
    3. Выполните домашнее задание и заполните у себя локально этот файл README.md:
       - впишите вверху название занятия и вашу фамилию и имя
@@ -24,17 +24,47 @@
 
 ### Задание 1
 
-commit 9b819e7b2b8b05aa487a5792c7f0868e4075d386
+Что нужно сделать:
+1.	Разверните GitLab локально, используя Vagrantfile и инструкцию, описанные в этом репозитории.
+2.	Создайте новый проект и пустой репозиторий в нём.
+3.	Зарегистрируйте gitlab-runner для этого проекта и запустите его в режиме Docker. Раннер можно регистрировать и запускать на той же виртуальной машине, на которой запущен GitLab.
+В качестве ответа в репозиторий шаблона с решением добавьте скриншоты с настройками раннера в проекте.
 
+### Решение 1
+![alt text](https://github.com/GubinaAV/8-03-hw/blob/main/img/01.png)
 ---
 
 ### Задание 2
 
-commit 0f3d5c5306fcf8e8b18a35c5fc95b6e4afdf2b4e
+Что нужно сделать:
+1.	Запушьте репозиторий на GitLab, изменив origin. Это изучалось на занятии по Git.
+2.	Создайте .gitlab-ci.yml, описав в нём все необходимые, на ваш взгляд, этапы.
+В качестве ответа в шаблон с решением добавьте:
+·	файл gitlab-ci.yml для своего проекта или вставьте код в соответствующее поле в шаблоне;
+·	скриншоты с успешно собранными сборками.
 
----
+### Решение 2
+![alt text](https://github.com/GubinaAV/8-03-hw/blob/main/img/02.png)
+|
+![alt text](https://github.com/GubinaAV/8-03-hw/blob/main/img/03.png)
+|
+![alt text](https://github.com/GubinaAV/8-03-hw/blob/main/img/04.png)
+|
+![alt text](https://github.com/GubinaAV/8-03-hw/blob/main/img/05.png)
+_
+##### #.gitlab-ci.yml
+image: docker/compose:latest
 
-### Задание 3
+services:
+  - docker:dind
 
-(https://github.com/GubinaAV/HWork/network)
+before_script:
+  - docker info
+  - docker-compose --version
 
+buildJob:
+  stage: build
+  tags:
+    - docker
+  script:
+    - docker-compose -f docker-compose.yaml up
