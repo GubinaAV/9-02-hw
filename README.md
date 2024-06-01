@@ -84,6 +84,7 @@
  ![alt text](https://github.com/GubinaAV/9-02-hw/blob/main/img/zabbix04.png)
  ##### 4. листинг команд на мониторируемом компьютере
  wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
+ 
  dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
  apt update
  apt install zabbix-agent
